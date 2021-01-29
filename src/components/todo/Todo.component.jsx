@@ -5,7 +5,7 @@ import { updateStatus } from "../../redux/todos/todoSlice";
 import "./todo.css";
 const Todo = () => {
   const dispatch = useDispatch();
-  const todos = useSelector(({ todoList }) => todoList.todos);
+  const todos = useSelector(({ todos }) => todos.todos);
   return (
     <div>
       {!todos.length ? (

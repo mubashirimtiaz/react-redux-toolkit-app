@@ -1,11 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./counter/counterSlice";
-import todoReducer from "./todos/todoSlice";
-const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-    todoList: todoReducer,
-  },
-});
+import rootReducer from "./rootReducer";
+import { persistStore } from "redux-persist";
+import logger from "redux-logger";
 
-export default store;
+const middleware = [];
+if (process.env.NODE_ENV === "development") {
+  middleware.push(logger);
+}
+
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: [...middleware],
+});
+const persistor = persistStore(store);
+
+export { persistor, store };

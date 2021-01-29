@@ -10,6 +10,7 @@ const AddTodo = () => {
       onSubmit={(e) => {
         e.preventDefault();
         dispatch(addTodos(task));
+        setTask("");
       }}
     >
       <input
